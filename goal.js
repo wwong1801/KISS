@@ -28,8 +28,14 @@ function loadQuadrant(quadrant, container) {
       container.innerHTML = "";
       snapshot.forEach(doc => {
         const item = document.createElement("div");
-        item.className = "bg-white p-2 rounded shadow";
+        item.className = "bg-white p-2 rounded shadow cursor-pointer hover:bg-gray-50";
         item.textContent = doc.data().text;
+        
+        // ✅ Add click to go to Item page
+        item.addEventListener("click", () => {
+          window.location.href = `item.html?goalId=${goalId}&quadrant=${quadrant}&itemId=${doc.id}`;
+        });
+        
         container.appendChild(item);
       });
     });
