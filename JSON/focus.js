@@ -10,6 +10,6 @@ const focusItems = [
 focusItems.forEach(item => {
   const div = document.createElement("div");
   div.className = "bg-white p-3 rounded shadow";
-  div.textContent = `${item.goal} - ${item.type}: ${item.text}`;
+  div.innerHTML = `<strong>${item.goal} - ${item.type}:</strong> ${item.text}`;
   focusContainer.appendChild(div);
 });
