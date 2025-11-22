@@ -1,71 +1,41 @@
-// Read URL parameters
+// Get query params: goalId, quadrant, itemId
 const params = new URLSearchParams(window.location.search);
 const goalId = params.get("goalId");
-const type = params.get("type");
+const quadrant = params.get("quadrant");
+const itemId = params.get("itemId");
 
-const pageTitle = document.getElementById("pageTitle");
-const container = document.getElementById("itemsContainer");
+// DOM elements
+const itemTitle = document.getElementById("itemTitle");
+const itemText = document.getElementById("itemText");
+const saveBtn = document.getElementById("saveBtn");
 
-// Map type → display text
-const titleMap = {
-  keep: "Keep",
-  improve: "Improve",
-  start: "Start",
-  stop: "Stop"
-};
-
-pageTitle.textContent = `${titleMap[type]} Items`;
-
-// Show add box
-function showAddBox() {
-  document.getElementById("addBox").classList.remove("hidden");
-  document.getElementById("newItemInput").focus();
-}
-
-// Hide add box
-function hideAddBox() {
-  document.getElementById("addBox").classList.add("hidden");
-  document.getElementById("newItemInput").value = "";
-}
-
-// Load items from Firestore
-async function loadItems() {
-  const snap = await db
-    .collection("goals")
-    .doc(goalId)
-    .collection(type)
-    .orderBy("createdAt", "asc")
-    .get();
-
-  container.innerHTML = "";
-
-  snap.forEach(doc => {
-    const data = doc.data();
-
-    const div = document.createElement("div");
-    div.className = "bg-white p-4 rounded-xl shadow";
-    div.textContent = data.text;
-
-    container.appendChild(div);
+// Load item
+db.collection("goals")
+  .doc(goalId)
+  .collection(quadrant)
+  .doc(itemId)
+  .get()
+  .then(doc => {
+    if (doc.exists) {
+      const data = doc.data();
+      itemTitle.textContent = `${quadrant} Item`;
+      itemText.value = data.text;
+    }
   });
-}
 
-loadItems();
+// Save changes
+saveBtn.addEventListener("click", () => {
+  const newText = itemText.value.trim();
+  if (!newText) return alert("Item cannot be empty!");
 
-// Add item to Firestore
-async function addItem() {
-  const text = document.getElementById("newItemInput").value.trim();
-  if (!text) return;
-
-  await db
-    .collection("goals")
+  db.collection("goals")
     .doc(goalId)
-    .collection(type)
-    .add({
-      text,
-      createdAt: Date.now()
-    });
-
-  hideAddBox();
-  loadItems(); // reload list
-}
+    .collection(quadrant)
+    .doc(itemId)
+    .update({
+      text: newText,
+      updatedAt: Date.now()
+    })
+    .then(() => alert("Item saved!"))
+    .catch(err => console.error(err));
+});
