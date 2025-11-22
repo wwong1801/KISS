@@ -21,22 +21,22 @@
   <main class="p-4 grid grid-cols-2 gap-4">
     <div>
       <h2 class="font-bold mb-2">KEEP</h2>
-      <div id="keepList" class="flex flex-col gap-2"></div>
+      <div id="keepList" class="flex flex-col gap-2 quadrant" data-quadrant="Keep" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <button id="addKeepBtn" class="mt-2 bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">+ Add</button>
     </div>
     <div>
       <h2 class="font-bold mb-2">IMPROVE</h2>
-      <div id="improveList" class="flex flex-col gap-2"></div>
+      <div id="improveList" class="flex flex-col gap-2 quadrant" data-quadrant="Improve" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <button id="addImproveBtn" class="mt-2 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">+ Add</button>
     </div>
     <div>
       <h2 class="font-bold mb-2">START</h2>
-      <div id="startList" class="flex flex-col gap-2"></div>
+      <div id="startList" class="flex flex-col gap-2 quadrant" data-quadrant="Start" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <button id="addStartBtn" class="mt-2 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">+ Add</button>
     </div>
     <div>
       <h2 class="font-bold mb-2">STOP</h2>
-      <div id="stopList" class="flex flex-col gap-2"></div>
+      <div id="stopList" class="flex flex-col gap-2 quadrant" data-quadrant="Stop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <button id="addStopBtn" class="mt-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">+ Add</button>
     </div>
   </main>
