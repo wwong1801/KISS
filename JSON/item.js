@@ -1,3 +1,4 @@
+
 // 1️⃣ Get URL parameters
 const params = new URLSearchParams(window.location.search);
 const goalId = params.get("goalId");
@@ -9,6 +10,7 @@ const itemTitle = document.getElementById("itemTitle");
 const itemContent = document.getElementById("itemContent");
 const saveBtn = document.getElementById("saveBtn");
 const deleteBtn = document.getElementById("deleteBtn");
+const focusCheckbox = document.getElementById("focusCheckbox");
 
 // 3️⃣ Load the item from Firestore
 db.collection("goals")
@@ -21,6 +23,7 @@ db.collection("goals")
       const data = doc.data();
       itemTitle.textContent = `${quadrant}: ${data.text}`;
       itemContent.value = data.text;
+      focusCheckbox.checked = data.Focus || false; 
     } else {
       alert("Item not found!");
     }
@@ -39,6 +42,7 @@ saveBtn.addEventListener("click", () => {
     .update({
       text: newText,
       updatedAt: Date.now(),
+      Focus: focusCheckbox.checked // ✅ save checkbox state
     })
     .then(() => alert("Item updated!"))
     .catch((err) => console.error(err));
