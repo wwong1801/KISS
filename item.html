@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KISS Items</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgYYW7_uoNE99e_YjkYFitB6MoMATY424",
+      authDomain: "kiss-8b6fd.firebaseapp.com",
+      projectId: "kiss-8b6fd",
+      storageBucket: "kiss-8b6fd.firebasestorage.app",
+      messagingSenderId: "244348934766",
+      appId: "1:244348934766:web:54ada965ccce96229c247f",
+      measurementId: "G-4T4HVJNMXG"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+</head>
+
+<body class="bg-gray-100 p-6">
+
+  <button onclick="history.back()" class="mb-4 text-blue-600">&larr; Back</button>
+
+  <h1 id="pageTitle" class="text-xl font-semibold mb-4">Loading...</h1>
+
+  <!-- List Container -->
+  <div id="itemsContainer" class="space-y-3"></div>
+
+  <!-- FAB Button -->
+  <button onclick="showAddBox()"
+          class="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-blue-600 text-white text-3xl shadow-lg">
+    +
+  </button>
+
+  <!-- Add New Item Box -->
+  <div id="addBox" class="hidden fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-xl w-80 space-y-4">
+      <h2 class="text-lg font-semibold">Add New Item</h2>
+      <input id="newItemInput" 
+             class="w-full border p-2 rounded"
+             placeholder="Type something..." />
+      <div class="flex gap-2 justify-end">
+        <button onclick="hideAddBox()" class="px-4 py-2">Cancel</button>
+        <button onclick="addItem()" class="px-4 py-2 bg-blue-600 text-white rounded">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="items.js"></script>
+</body>
+</html>
