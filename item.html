@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KISS Review - Home</title>
+  <title>Item - KISS Review</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" />
@@ -11,12 +11,16 @@
 <body class="bg-gray-100 font-sans min-h-screen">
 
   <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">KISS App</h1>
-    <button id="addGoalBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Goal</button>
+    <button onclick="window.history.back()" class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">
+      Back
+    </button>
+    <h1 id="itemTitle" class="text-xl font-bold text-center flex-1"></h1>
+    <div style="width:40px;"></div>
   </header>
 
   <main class="p-4">
-    <div id="goalList" class="flex flex-col gap-4"></div>
+    <textarea id="itemText" class="w-full p-3 rounded border border-gray-300" rows="5"></textarea>
+    <button id="saveBtn" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
   </main>
 
   <!-- Firebase SDK -->
@@ -37,8 +41,6 @@
     const db = firebase.firestore();
   </script>
 
-  <!-- Index JS -->
-  <script src="index.js"></script>
-
+  <script src="item.js"></script>
 </body>
 </html>
