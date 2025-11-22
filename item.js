@@ -5,10 +5,10 @@ const quadrant = params.get("quadrant");
 const itemId = params.get("itemId");
 
 // 2️⃣ DOM elements
-const itemTitle = document.getElementById("itemTitle"); // Create this in HTML
-const itemContent = document.getElementById("itemContent"); // Create a textarea or div in HTML
-const saveBtn = document.getElementById("saveBtn"); // Create a button in HTML
-const deleteBtn = document.getElementById("deleteBtn"); // Optional
+const itemTitle = document.getElementById("itemTitle");
+const itemContent = document.getElementById("itemContent");
+const saveBtn = document.getElementById("saveBtn");
+const deleteBtn = document.getElementById("deleteBtn");
 
 // 3️⃣ Load the item from Firestore
 db.collection("goals")
@@ -19,8 +19,8 @@ db.collection("goals")
   .then((doc) => {
     if (doc.exists) {
       const data = doc.data();
-      itemTitle.textContent = `${quadrant}: ${data.text}`; // title
-      itemContent.value = data.text; // if using textarea
+      itemTitle.textContent = `${quadrant}: ${data.text}`;
+      itemContent.value = data.text;
     } else {
       alert("Item not found!");
     }
@@ -44,7 +44,7 @@ saveBtn.addEventListener("click", () => {
     .catch((err) => console.error(err));
 });
 
-// 5️⃣ Optional: Delete item
+// 5️⃣ Delete item
 deleteBtn.addEventListener("click", () => {
   if (!confirm("Are you sure you want to delete this item?")) return;
 
@@ -55,7 +55,7 @@ deleteBtn.addEventListener("click", () => {
     .delete()
     .then(() => {
       alert("Item deleted!");
-      window.history.back(); // Go back to goal page
+      window.history.back();
     })
     .catch((err) => console.error(err));
 });
