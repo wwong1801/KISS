@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus of the Week</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen">
+  <header class="bg-white shadow p-4 text-center font-bold text-xl">Focus of the Week</header>
+  <main class="p-4">
+    <div id="focusContainer" class="flex flex-col gap-4"></div>
+  </main>
+
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCgYYW7_uoNE99e_YjkYFitB6MoMATY424",
+    authDomain: "kiss-8b6fd.firebaseapp.com",
+    projectId: "kiss-8b6fd",
+    storageBucket: "kiss-8b6fd.appspot.com",
+    messagingSenderId: "244348934766",
+    appId: "1:244348934766:web:54ada965ccce96229c247f"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+  
+  <script src="../js/focus.js"></script>
+</body>
+</html>
